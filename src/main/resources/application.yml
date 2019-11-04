@@ -1,0 +1,29 @@
+#spring.datasource.jdbcUrl=jdbc:mysql://localhost:3306/db_master?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#spring.datasource.username=root
+#spring.datasource.password=123123
+spring:
+#  datasource:
+#    username: root
+#    password: 123123
+#    url: jdbc:mysql://localhost:3306/dandinglong?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+  datasourcemaster:
+    username: root
+    password: 123123
+    jdbcUrl: jdbc:mysql://localhost:3306/db_master?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+  datasourceslaver:
+    username: root
+    password: 123123
+    jdbcUrl: jdbc:mysql://localhost:3306/db_slaver?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+
+mybatis:
+  mapper-locations: classpath:mappingmaster/*Mapper.xml
+#  type-aliases-package: com.dandinglong.xinfang.entity
+
+
+#showSql
+logging:
+  level:
+    com:
+      dandinglong:
+        webframedemo:
+          dao: debug

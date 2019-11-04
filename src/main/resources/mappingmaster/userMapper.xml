@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dandinglong.webframedemo.dao.master.UserMapper">
+    <resultMap id="userEntityResult" type="com.dandinglong.webframedemo.entity.UserEntity">
+        <id property="id" column="id"></id>
+        <result column="u_name" property="uName"></result>
+    </resultMap>
+    <sql id="updateColumn">
+        u_name=#{uName} ,age=#{age},addr=#{addr},mobile=#{mobile}
+    </sql>
+    <insert id="myinsertOne" useGeneratedKeys="true" keyProperty="id">
+        insert into user (u_name,age,mobile,addr) values (#{uName},#{age},#{mobile},#{addr})
+    </insert>
+    <select id="myselectById" resultMap="userEntityResult">
+        select * from user where id=#{id}
+    </select>
+    <update id="updateUser" parameterType="com.dandinglong.webframedemo.entity.UserEntity">
+        update user set <include refid="updateColumn"></include> where id=#{id}
+    </update>
+    <select id="selectFrontFive" resultMap="userEntityResult">
+        select * from user limit 0,5
+    </select>
+</mapper>
