@@ -53,8 +53,10 @@ public class DemoController {
     }
 
     @RequestMapping("doget")
+    @Transactional(transactionManager = "slaverTransactionManager")
     public UserEntity doget(@RequestParam("id") int id) {
         UserEntity userEntity = userMapper.myselectById(id);
+        userSlaverMapper.myinsertOne(userEntity);
         return userEntity;
 
     }

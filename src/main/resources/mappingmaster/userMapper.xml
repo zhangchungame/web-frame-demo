@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dandinglong.webframedemo.dao.master.UserMapper">
+    <cache type="com.dandinglong.webframedemo.util.RedisCache"></cache>
     <resultMap id="userEntityResult" type="com.dandinglong.webframedemo.entity.UserEntity">
         <id property="id" column="id"></id>
         <result column="u_name" property="uName"></result>
