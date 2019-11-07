@@ -12,4 +12,6 @@ public interface UserMapper{
     public UserEntity myselectById(int id);
     public int updateUser(UserEntity userEntity);
     public List<UserEntity> selectFrontFive();
+    public List<UserEntity> selectAllUser();
+    public int deleteById(int id);
 }

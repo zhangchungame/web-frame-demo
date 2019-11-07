@@ -25,10 +25,10 @@ public class LogAspect {
         sb.append("class:").append(joinPoint.getSignature().getDeclaringTypeName()).append("--Method:")
                 .append(joinPoint.getSignature().getName()).append("--ArgsMap");
 //        .append(JSON.toJSONString(joinPoint.getArgs()));
-        System.out.println("Before point cut");
-        System.out.println(joinPoint.getSignature());
-        System.out.println(joinPoint.getTarget());
-        System.out.println(joinPoint.getArgs());
+//        System.out.println("Before point cut");
+//        System.out.println(joinPoint.getSignature());
+//        System.out.println(joinPoint.getTarget());
+//        System.out.println(joinPoint.getArgs());
         String signature = joinPoint.getSignature().getName();
         Object target = joinPoint.getTarget();
         Object[] args = joinPoint.getArgs();

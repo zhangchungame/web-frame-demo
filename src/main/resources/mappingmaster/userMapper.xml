@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dandinglong.webframedemo.dao.master.UserMapper">
-    <cache type="com.dandinglong.webframedemo.util.RedisCache"></cache>
+    <!--    <cache type="com.dandinglong.webframedemo.util.RedisCache"></cache>-->
     <resultMap id="userEntityResult" type="com.dandinglong.webframedemo.entity.UserEntity">
         <id property="id" column="id"></id>
         <result column="u_name" property="uName"></result>
@@ -23,4 +23,12 @@
     <select id="selectFrontFive" resultMap="userEntityResult">
         select * from user limit 0,5
     </select>
+
+    <select id="selectAllUser" resultMap="userEntityResult">
+        select * from user ;
+    </select>
+
+    <delete id="deleteById">
+        delete from user where id=#{id}
+    </delete>
 </mapper>
