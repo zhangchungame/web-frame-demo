@@ -1,21 +1,21 @@
 package com.dandinglong.webframedemo.aop;
 
 import com.alibaba.fastjson.JSON;
+import com.dandinglong.webframedemo.entity.UserEntity;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Aspect
 public class LogAspect {
-    private Logger logger=LoggerFactory.getLogger("controllerLogger");
+    private Logger logger=LoggerFactory.getLogger("ControllerLogger");
     @Pointcut("execution(public * com.dandinglong.webframedemo.controller.*.*(..))")
     public void controllerPoint(){
     }
@@ -39,6 +39,13 @@ public class LogAspect {
         }
         logger.info(sb.toString());
     }
+//    @AfterReturning(value = "controllerPoint()" ,returning = "object")
+//    public void doAfter(JoinPoint joinPoint,Object object){
+//        System.out.println(JSON.toJSONString(object));
+//        if(object instanceof UserEntity){
+//            ((UserEntity) object).setuName("改變了");
+//        }
+//    }
     @AfterThrowing(pointcut = "controllerPoint()",throwing = "e")
     public void afterThhrow(JoinPoint joinPoint, Throwable e){
         logger.error(e.getMessage());

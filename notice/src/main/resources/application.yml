@@ -1,0 +1,71 @@
+#spring.datasource.jdbcUrl=jdbc:mysql://localhost:3306/db_master?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#spring.datasource.username=root
+#spring.datasource.password=123123
+spring:
+
+#  datasource:
+#    username: root
+#    password: 123123
+#    url: jdbc:mysql://localhost:3306/dandinglong?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+  datasourcemaster:
+    username: root
+    password: 123123
+    jdbcUrl: jdbc:mysql://localhost:3306/db_master?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+  datasourceslaver:
+    username: root
+    password: 123123
+    jdbcUrl: jdbc:mysql://localhost:3306/db_slaver?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+  redis:
+    # redis数据库索引（默认为0），我们使用索引为3的数据库，避免和其他数据库冲突
+    database: 3
+    # redis服务器地址（默认为localhost）
+    host: 192.168.0.118
+    # redis端口（默认为6379）
+    port: 6379
+    # redis访问密码（默认为空）
+    password: 123123
+    # redis连接超时时间（单位为毫秒）
+    timeout: 1200
+    # redis连接池配置
+    pool:
+      # 最大可用连接数（默认为8，负数表示无限）
+      max-active: 8
+      # 最大空闲连接数（默认为8，负数表示无限）
+      max-idle: 8
+      # 最小空闲连接数（默认为0，该值只有为正数才有作用）
+      min-idle: 0
+      # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
+      max-wait: -1
+  #配置rabbitMq 服务器
+  rabbitmq:
+    host: 192.168.0.118
+    #    host: 192.168.88.175
+    port: 5672
+    username: zc
+    password: 123123
+    #虚拟host 可以不设置,使用server默认host
+    virtual-host: /*
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+        prefetch: 2
+      simple:
+        acknowledge-mode: manual
+        prefetch: 3
+
+mybatis:
+  mapper-locations: classpath:mappingmaster/*Mapper.xml
+#  type-aliases-package: com.dandinglong.xinfang.entity
+
+
+#showSql
+logging:
+  level:
+    com:
+      dandinglong:
+        webframedemo:
+          dao: debug
+server:
+  port: 8081

@@ -35,6 +35,24 @@ spring:
       min-idle: 0
       # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
       max-wait: -1
+  #配置rabbitMq 服务器
+  rabbitmq:
+    host: 192.168.0.118
+    #    host: 192.168.88.175
+    port: 5672
+    username: zc
+    password: 123123
+    #虚拟host 可以不设置,使用server默认host
+    virtual-host: /*
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+        prefetch: 2
+      simple:
+        acknowledge-mode: manual
+        prefetch: 3
 
 mybatis:
   mapper-locations: classpath:mappingmaster/*Mapper.xml

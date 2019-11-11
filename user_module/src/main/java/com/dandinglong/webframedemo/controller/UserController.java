@@ -4,6 +4,7 @@ import com.dandinglong.webframedemo.entity.UserEntity;
 import com.dandinglong.webframedemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,5 +43,19 @@ public class UserController {
         Integer userId=Integer.valueOf(httpServletRequest.getParameter("id"));
 
         return userService.delete(userId);
+    }
+    @RequestMapping("uuid")
+    public long getUUid(){
+        return userService.getUUid();
+    }
+
+    @RequestMapping("register")
+    public UserEntity register(@RequestParam("name")String name){
+        UserEntity userEntity=new UserEntity();
+        userEntity.setuName(name);
+        userEntity.setAddr("shanghai");
+        userEntity.setMobile("13768481738");
+        userEntity.setAge(29);
+        return userService.register(userEntity);
     }
 }
